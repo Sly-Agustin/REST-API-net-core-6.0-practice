@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "I186tGwRGnH1abONIqVv3F2wM3zaC2PllMqlj4Fx0TYLgj7RSdsnQqYfcDMUVCzw8kE3531kYg4mS8RAFQJDjg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\agust\\Documents\\GitHub\\REST-API-net-core-6.0-practice\\WebApiCoffeeShop\\WebApiCoffeeShop\\WebApiCoffeeShop.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\agust\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\agust\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\agust\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\agust\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\agust\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\agust\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

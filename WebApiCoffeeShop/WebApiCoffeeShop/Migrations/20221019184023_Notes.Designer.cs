@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiCoffeeShop;
 
@@ -11,9 +12,10 @@ using WebApiCoffeeShop;
 namespace WebApiCoffeeShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221019184023_Notes")]
+    partial class Notes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,63 +54,29 @@ namespace WebApiCoffeeShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CoffeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CoffeeId");
+
                     b.ToTable("Notes");
                 });
 
-            modelBuilder.Entity("WebApiCoffeeShop.Entities.Specie", b =>
+            modelBuilder.Entity("WebApiCoffeeShop.Entities.Note", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Species");
+                    b.HasOne("WebApiCoffeeShop.Entities.Coffee", null)
+                        .WithMany("Notes")
+                        .HasForeignKey("CoffeeId");
                 });
 
-            modelBuilder.Entity("WebApiCoffeeShop.Entities.Varietal", b =>
+            modelBuilder.Entity("WebApiCoffeeShop.Entities.Coffee", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SpecieId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SpecieId");
-
-                    b.ToTable("Varietales");
-                });
-
-            modelBuilder.Entity("WebApiCoffeeShop.Entities.Varietal", b =>
-                {
-                    b.HasOne("WebApiCoffeeShop.Entities.Specie", "Specie")
-                        .WithMany("Varietales")
-                        .HasForeignKey("SpecieId");
-
-                    b.Navigation("Specie");
-                });
-
-            modelBuilder.Entity("WebApiCoffeeShop.Entities.Specie", b =>
-                {
-                    b.Navigation("Varietales");
+                    b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }

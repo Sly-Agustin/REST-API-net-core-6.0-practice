@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public string Source { get; set; }
         public int Height { get; set; }
+        //public List<Note> Notes { get; set; }
     }
 }

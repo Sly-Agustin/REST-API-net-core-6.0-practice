@@ -10,5 +10,8 @@ namespace WebApiCoffeeShop
         }
 
         public DbSet<Coffee> Coffes {get; set; }
+        public DbSet<Note> Notes {get; set; }
+        public DbSet<Varietal> Varietales { get; set; }
+        public DbSet<Specie> Species { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using WebApiCoffeeShop;
 
@@ -6,7 +7,7 @@ var Configuration = builder.Configuration;
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(Configuration.GetConnectionString("defaultConnection"))
 );

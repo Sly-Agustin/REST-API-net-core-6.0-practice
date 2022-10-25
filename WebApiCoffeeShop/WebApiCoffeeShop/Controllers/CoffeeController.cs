@@ -26,6 +26,12 @@ namespace WebApiCoffeeShop.Controllers
             };*/
         }
 
+        [HttpGet("first")]
+        public async Task<ActionResult<Coffee>> FirstCoffe()
+        {
+            return await context.Coffes.FirstOrDefaultAsync();
+        }
+
         // This allows to receive coffees in a post
         [HttpPost]
         public async Task<ActionResult> Post(Coffee coffee)

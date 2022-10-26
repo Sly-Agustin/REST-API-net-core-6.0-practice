@@ -27,9 +27,15 @@ namespace WebApiCoffeeShop.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Coffee>> Get(int id)
+        public async Task<ActionResult<Coffee>> GetSpecificCoffee(int id)
         {
-            return await context.Coffes.FindAsync
+            // Error check necessary
+            var coffee = await context.Coffes.FirstOrDefaultAsync(coffee => coffee.Id == id);
+            if (coffee == null)
+            {
+                return NotFound($"Coffee of id {id} does not exist in the database");
+            }
+            return coffee;
         }
 
         [HttpGet("first")]

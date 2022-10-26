@@ -5,7 +5,7 @@ using WebApiCoffeeShop.Entities;
 namespace WebApiCoffeeShop.Controllers
 {
     [ApiController]
-    [Route("api/coffee")]
+    [Route("api/coffee")]   // Could be "api/[controller]"
     public class CoffeeController: ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -24,6 +24,12 @@ namespace WebApiCoffeeShop.Controllers
                 new Coffee() { Id = 1, Name = "Santos", Source = "Brasil", Height = 1200 },
                 new Coffee() { Id = 2, Name = "Guanes Genuino", Source = "Colombia", Height = 1600 },
             };*/
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Coffee>> Get(int id)
+        {
+            return await context.Coffes.FindAsync
         }
 
         [HttpGet("first")]

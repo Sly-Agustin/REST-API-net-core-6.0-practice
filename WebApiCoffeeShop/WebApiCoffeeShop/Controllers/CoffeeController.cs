@@ -15,6 +15,7 @@ namespace WebApiCoffeeShop.Controllers
             this.context = context;
         }
 
+        // Get all coffees
         [HttpGet]
         public async Task<ActionResult<List<Coffee>>> Get()
         {
@@ -26,10 +27,10 @@ namespace WebApiCoffeeShop.Controllers
             };*/
         }
 
-        [HttpGet("{id}")]
+        // Get a coffee by id
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Coffee>> GetSpecificCoffee(int id)
         {
-            // Error check necessary
             var coffee = await context.Coffes.FirstOrDefaultAsync(coffee => coffee.Id == id);
             if (coffee == null)
             {
@@ -37,14 +38,27 @@ namespace WebApiCoffeeShop.Controllers
             }
             return coffee;
         }
+        
+        // Get a coffee by name
+        [HttpGet("{name}")]
+        public async Task<ActionResult<Coffee>> GetSpecificCoffee(string name)
+        {
+            var coffee = await context.Coffes.FirstOrDefaultAsync(coffee => coffee.Name == name);
+            if (coffee == null)
+            {
+                return NotFound($"Coffee of name {name} does not exist in the database");
+            }
+            return coffee;
+        }
 
+        // Get the first coffee entry in the database
         [HttpGet("first")]
         public async Task<ActionResult<Coffee>> FirstCoffe()
         {
             return await context.Coffes.FirstOrDefaultAsync();
         }
 
-        // This allows to receive coffees in a post
+        // This allows to receive coffees in a post and save them in the database
         [HttpPost]
         public async Task<ActionResult> Post(Coffee coffee)
         {
@@ -53,6 +67,7 @@ namespace WebApiCoffeeShop.Controllers
             return Ok();
         }
 
+        // Update a coffee information
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(Coffee coffee, int id)
         {
@@ -70,6 +85,7 @@ namespace WebApiCoffeeShop.Controllers
             return Ok();
         }
 
+        // Delete a coffee from the database
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(Coffee coffee, int id)
         {

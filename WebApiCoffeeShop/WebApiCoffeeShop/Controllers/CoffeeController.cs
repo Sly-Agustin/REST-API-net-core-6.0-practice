@@ -62,6 +62,11 @@ namespace WebApiCoffeeShop.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(Coffee coffee)
         {
+            var existCoffeeWithSameName = await context.Coffes.AnyAsync(existentCoffee => existentCoffee.Name == coffee.Name);
+            if (existCoffeeWithSameName)
+            {
+                return BadRequest("There is already a coffee with that name!");
+            }
             context.Add(coffee);
             await context.SaveChangesAsync();
             return Ok();
